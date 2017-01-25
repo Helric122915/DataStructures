@@ -125,7 +125,6 @@ void LinkedList::display() {
     }
 
     std::cout << "\n";
-    //std::cout << "<-[" << temp->getData() << "]->\n";
   }
   else
     std::cout << "Nothing to print list is empty.\n";
@@ -142,7 +141,6 @@ void LinkedList::displayBackward() {
     }
 
     std::cout << "\n";
-    //std::cout << "<-[" << temp->getData() << "]->\n";
   }
   else
     std::cout << "Nothing to print list is empty.\n";
