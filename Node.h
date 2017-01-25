@@ -21,8 +21,10 @@ Node::Node(int d) : data(d) {
 }
 
 Node::~Node() {
-  delete next;
-  delete prev;
+  if (next)
+    delete next;
+  if(prev)
+    delete prev;
 }
 
 int Node::getData() {

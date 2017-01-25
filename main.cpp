@@ -5,12 +5,16 @@ int main() {
 
   Node* node = new Node(5);
 
-  list->insert(node);
+  list->insert(new Node(57));
   list->display();
-  list->insert(new Node(10));
+  list->append(node);
   list->display();
-  list->append(new Node(57));
+  list->append(new Node(27));
   list->display();
-  //list->del(node);
-  //list->display();
+  list->displayBackward();
+  list->del(node);
+  list->display();
+
+  list->empty();
+  list->display();
 }

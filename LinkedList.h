@@ -21,9 +21,13 @@ class LinkedList {
 
     bool del(Node*);
 
+    bool empty();
+
     bool isEmpty();
 
     void display();
+
+    void displayBackward();
 };
 
 LinkedList::LinkedList() : count(0) {
@@ -31,8 +35,10 @@ LinkedList::LinkedList() : count(0) {
 }
 
 LinkedList::~LinkedList() {
-  delete head;
-  delete tail;
+  if (head)
+    delete head;
+  if (tail)
+    delete tail;
 }
 
 void LinkedList::append(Node* item) {
@@ -51,8 +57,8 @@ void LinkedList::insert(Node* item) {
   if (!head)
     head = tail = item;
   else {
-    item->next = head;
     head->prev = item;
+    item->next = head;
     head = item;
   }
 
@@ -84,13 +90,21 @@ bool LinkedList::del(Node* item) {
         item->next->prev = item->prev;
       }
 
-      delete item;
+      count--;
       return true;
     }
-    else
+    else {
       temp = temp->next;
+    }
   }
   return false;
+}
+
+bool LinkedList::empty() {
+  while(head)
+    if (!del(head))
+      return false;
+  return true;
 }
 
 bool LinkedList::isEmpty() {
@@ -101,15 +115,36 @@ bool LinkedList::isEmpty() {
 }
 
 void LinkedList::display() {
+  if (!isEmpty()) {
+    Node *temp = head;
 
-  Node *temp = head;
+    while(temp) {
+      std::cout << "<-[" << temp->getData() << "]->";
 
-  while(temp->next) {
-    std::cout << "<-[" << temp->getData() << "]->";
+      temp = temp->next;
+    }
 
-    temp = temp->next;
+    std::cout << "\n";
+    //std::cout << "<-[" << temp->getData() << "]->\n";
   }
+  else
+    std::cout << "Nothing to print list is empty.\n";
+}
 
-  std::cout << "<-[" << temp->getData() << "]->\n";
+void LinkedList::displayBackward() {
+  if (!isEmpty()) {
+    Node *temp = tail;
+
+    while (temp) {
+      std::cout << "<-[" << temp->getData() << "]->";
+
+      temp = temp->prev;
+    }
+
+    std::cout << "\n";
+    //std::cout << "<-[" << temp->getData() << "]->\n";
+  }
+  else
+    std::cout << "Nothing to print list is empty.\n";
 }
 #endif
